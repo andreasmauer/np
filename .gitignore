@@ -3,6 +3,7 @@
 /es
 *.csv
 *.txt
+*.xlxs
 
 # compiled #
 ######################

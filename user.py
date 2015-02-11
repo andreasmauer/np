@@ -10,12 +10,12 @@ class Input:
 		self.variables = {
 
 			# 'seosem': 'seo',
-			'reporttype': 'categories',
+			'reporttype': 'full category',
 			'single_keyword': 'kontaktlinsen',
 			'multiple_keywords': ['kontaktlinsen', 'brillen', 'brille', 'sonnenbrillen'],
-			'category': '',
+			'category': 'linsen',
 			'country_folder': 'de',
-			'weeks': [41, 42],
+			'weeks': [41],
 			'path': r'/Users/andres/Documents/python/np/np2.0/de/2014',
 			'filename_of_report': 'testing.csv',
 		}

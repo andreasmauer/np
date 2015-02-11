@@ -29,7 +29,7 @@ class Controller:
 			self.multiple_keywords_report()
 
 		elif self.User.get('reporttype') == 'full category':
-			pass
+			self.full_category_report()
 
 		elif self.User.get('reporttype') == 'categories':
 			self.categories_report()
@@ -54,7 +54,7 @@ class Controller:
 
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
-			self.User.get('multiple_keywords'), ['negative values here'], 'just', 'groupname')
+			self.User.get('multiple_keywords'), ['negative values here'], 'just', 'no-groupname')
 		
 		# print in report
 		self.Report.restore(self.User.get('path'), self.User.get('filename_of_report'))
@@ -70,8 +70,6 @@ class Controller:
 
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
 			['brille'], ['sonne'], 'consolidated_init', 'brille')
-
-
 		
 		# print in report
 		self.Report.restore(self.User.get('path'), self.User.get('filename_of_report'))
@@ -79,8 +77,19 @@ class Controller:
 		self.Report.print_dictionary(self.User.get('reporttype'), config.variables['kpis'],
 			self.User.get('weeks'), self.Crawler.kpis)
 
+	def full_category_report(self):
 
+		# somewhere on the controller I need to set up the categories thingy
 
+		# crawl the csvs
+		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
+			[self.User.get('category')], ['negative values here'], 'init', 'no-groupname')
+
+		# print in report
+		self.Report.restore(self.User.get('path'), self.User.get('filename_of_report'))
+
+		self.Report.print_dictionary(self.User.get('reporttype'), config.variables['kpis'],
+			self.User.get('weeks'), self.Crawler.kpis)
 
 
 a = Controller()
