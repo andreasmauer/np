@@ -64,6 +64,8 @@ class Controller:
 
 	def categories_report(self):
 
+		#just for testing git
+
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
 			['spex', 'mister'], ['negative values here'], 'consolidated_init', 'brand')
