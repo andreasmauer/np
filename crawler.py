@@ -9,6 +9,12 @@ class Crawler:
 
 		self.kpis = {}
 
+		# store all the keywords and weeks that where crawled
+		# self.keywords_crawled = [['kontaktlinsen', 21], ['kontaktlinsen', 22], ['sonnenbrillen', 21]]
+		self.keywords_crawled = []
+
+
+
 
 	def crawl(self, path, weeks, positives, negatives, how, group_name):
 
@@ -34,6 +40,8 @@ class Crawler:
 
 						if how == 'init' and (any(element in row[1] for element in positives)) and (any(element not in row[1] for element in negatives)):
 							print str(week) + ' ' + row[1]
+
+							self.keywords_crawled.append([row[1], week])
 
 							self.magic_crawl(row, week, how, group_name)
 

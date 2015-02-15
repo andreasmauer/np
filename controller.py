@@ -64,7 +64,6 @@ class Controller:
 
 	def categories_report(self):
 
-		#just for testing git
 
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
@@ -81,7 +80,6 @@ class Controller:
 
 	def full_category_report(self):
 
-		# somewhere on the controller I need to set up the categories thingy
 
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
@@ -92,6 +90,17 @@ class Controller:
 
 		self.Report.print_dictionary(self.User.get('reporttype'), config.variables['kpis'],
 			self.User.get('weeks'), self.Crawler.kpis)
+
+	def keyword_in_report(self):
+
+		pass
+
+
+
+
+	def regex(self):
+
+		pass
 
 
 a = Controller()
