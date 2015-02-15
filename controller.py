@@ -33,7 +33,10 @@ class Controller:
 
 		elif self.User.get('reporttype') == 'categories':
 			self.categories_report()
-		# self.test()
+
+		elif self.User.get('reporttype') == 'regex':
+			self.regex_report()
+
 
 
 
@@ -100,9 +103,11 @@ class Controller:
 
 
 
-	def regex(self):
+	def regex_report(self):
 
-		pass
+		# crawl the csvs
+		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
+			self.User.get('regex'), ['negative values here'], 'regex', 'no-groupname')
 
 
 a = Controller()

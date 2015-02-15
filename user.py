@@ -10,7 +10,7 @@ class Input:
 		self.variables = {
 
 			# 'seosem': 'seo',
-			'reporttype': 'full category',
+			'reporttype': 'regex',
 			'single_keyword': 'kontaktlinsen',
 			'multiple_keywords': ['kontaktlinsen', 'brillen', 'brille', 'sonnenbrillen'],
 			'category': 'linsen',
@@ -18,6 +18,7 @@ class Input:
 			'weeks': [41],
 			'path': r'/Users/andres/Documents/python/np/np2.0/de/2014',
 			'filename_of_report': 'testing.csv',
+			'regex': '^brillen$',
 		}
 
 		###########################################

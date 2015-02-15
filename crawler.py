@@ -1,5 +1,6 @@
 import sys
 import csv
+import re
 
 class Crawler:
 
@@ -30,12 +31,14 @@ class Crawler:
 					# the first row it is just bullshit from adwords, I have to jump it
 					if len(row) > 1 and row[0] != 'Search Result Type':
 
+
 ####################################################################################
 
 						# KEYWORD MAGIC
 							# 4 dif reports, init, consolidated_init, just, consolidated_just
 
 ####################################################################################
+
 
 
 						if how == 'init' and (any(element in row[1] for element in positives)) and (any(element not in row[1] for element in negatives)):
@@ -68,7 +71,22 @@ class Crawler:
 							self.magic_crawl(row, week, how, group_name)
 
 
+
+						elif how == 'regex' and (re.search(positives, row[1])):
+							print 'aa'
+							print str(week) + ' ' + row[1]
+
+
 		print self.kpis
+
+
+
+
+
+
+
+
+
 
 
 	def magic_crawl(self, row, week, how, group_name):
