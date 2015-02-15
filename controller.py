@@ -64,6 +64,8 @@ class Controller:
 
 	def categories_report(self):
 
+		# for testing
+
 
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
