@@ -6,7 +6,7 @@ import sys
 variables = {
 	
 	'keyword_categories': ['brille', 'sonne', 'linsen', 'brands', 'others', 'brand'],
-	'reports': ['single keyword', 'multiple keywords', 'full category', 'categories'],
+	'reports': ['single keyword', 'multiple keywords', 'full category', 'categories', 'regex'],
 	'path': '',
 	'kpis': ('clicks', 'impressions', 'ranking', 'ctr'),
 

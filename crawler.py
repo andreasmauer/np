@@ -42,7 +42,7 @@ class Crawler:
 
 
 						if how == 'init' and (any(element in row[1] for element in positives)) and (any(element not in row[1] for element in negatives)):
-							print str(week) + ' ' + row[1]
+							# print str(week) + ' ' + row[1]
 
 							self.keywords_crawled.append([row[1], week])
 
@@ -52,38 +52,36 @@ class Crawler:
 
 						
 						elif how == 'consolidated_init' and (any(element in row[1] for element in positives)) and (any(element not in row[1] for element in negatives)):
-							print str(week) + ' ' + row[1]
+							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'just' and (any(element == row[1] for element in positives)):	
-							print str(week) + ' ' + row[1]
+							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'consolidated_just' and (any(element == row[1] for element in positives)):
-							print str(week) + ' ' + row[1]
+							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'regex' and (re.search(positives, row[1])):
-							print 'aa'
-							print str(week) + ' ' + row[1]
+							# print str(week) + ' ' + row[1]
+
+							self.magic_crawl(row, week, how, group_name)
 
 
-		print self.kpis
+			print 'crawling for week ' + week + ' done'
 
 
-
-
-
-
+		# print self.kpis
 
 
 
@@ -93,7 +91,7 @@ class Crawler:
 
 
 		# define keyword vs group_name
-		if (how == 'init') or (how == 'just'):
+		if (how == 'init') or (how == 'just') or (how == 'regex'):
 
 			keyword = row[1]
 
@@ -102,30 +100,30 @@ class Crawler:
 			keyword = group_name
 
 
-	# check if keyword exists & update if not
+		# check if keyword exists & update if not
 		if keyword not in self.kpis:
 
-	# the ctr is always tricky to set becaused x / 0
+		# the ctr is always tricky to set becaused x / 0
 			try: 	
-				ctr = round(float(row[7]) / float(row[8]), 2)
+				ctr = round(float(row[7].replace(",", ".")) / float(row[8].replace(",", ".")), 2)
 
 			except:
 				ctr = 0.0
 
-	# update the self.kpis
+		# update the self.kpis
 			self.kpis.update({keyword: {
-				'clicks': {week: float(row[7])},
-				'impressions': {week: float(row[8])},
-				'rankingbruto': {week: (float(row[8]) * float(row[11]))},
-				'ranking': {week: float(row[11])},
+				'clicks': {week: float(row[7].replace(",", "."))},
+				'impressions': {week: float(row[8].replace(",", "."))},
+				'rankingbruto': {week: (float(row[8].replace(",", ".")) * float(row[11].replace(",", ".")))},
+				'ranking': {week: float(row[11].replace(",", "."))},
 				'ctr': {week: ctr}}})
 
-	# check if week exists & pass values
+		# check if week exists & pass values
 		elif week in self.kpis[keyword]['clicks']:
 
-			self.kpis[keyword]['clicks'][week] = self.kpis[keyword]['clicks'][week] + float(row[7])
-			self.kpis[keyword]['impressions'][week] = self.kpis[keyword]['impressions'][week] + float(row[8])
-			self.kpis[keyword]['rankingbruto'][week] = self.kpis[keyword]['rankingbruto'][week] + (float(row[8]) * float(row[11]))
+			self.kpis[keyword]['clicks'][week] = self.kpis[keyword]['clicks'][week] + float(row[7].replace(",", "."))
+			self.kpis[keyword]['impressions'][week] = self.kpis[keyword]['impressions'][week] + float(row[8].replace(",", "."))
+			self.kpis[keyword]['rankingbruto'][week] = self.kpis[keyword]['rankingbruto'][week] + (float(row[8].replace(",", ".")) * float(row[11].replace(",", ".")))
 			
 			try:
 				self.kpis[keyword]['ranking'][week] = float(self.kpis[keyword]['rankingbruto'][week] / self.kpis[keyword]['impressions'][week])
@@ -141,14 +139,14 @@ class Crawler:
 		else:
 
 			try: 
-				ctr = float(row[7]) / float(row[8])
+				ctr = float(row[7].replace(",", ".")) / float(row[8].replace(",", "."))
 			except:
 				ctr = 0.0
 
-			self.kpis[keyword]['clicks'].update({week: float(row[7])})
-			self.kpis[keyword]['impressions'].update({week: float(row[8])})
-			self.kpis[keyword]['rankingbruto'].update({week: float(row[8]) * float(row[11])})
-			self.kpis[keyword]['ranking'].update({week: float(row[11])})
+			self.kpis[keyword]['clicks'].update({week: float(row[7].replace(",", "."))})
+			self.kpis[keyword]['impressions'].update({week: float(row[8].replace(",", "."))})
+			self.kpis[keyword]['rankingbruto'].update({week: float(row[8].replace(",", ".")) * float(row[11].replace(",", "."))})
+			self.kpis[keyword]['ranking'].update({week: float(row[11].replace(",", "."))})
 			self.kpis[keyword]['ctr'].update({week: ctr})
 
 

@@ -45,14 +45,18 @@ class Report:
 			self.append_new_row([kpi_names_tuple[i]])
 			self.print_weeks_line(weeks)
 
-		# I print the kpis
+			# I print the kpis
 			for keyword in dictionary:
 				weekly_line_to_print = []
 
-		# for each week I take the value needed and pass it to the print_kpi_line function
+				# for each week I take the value needed and pass it to the print_kpi_line function
+				# there are cases where I dont have values for that week, therefore I print 0
 				for week in weeks:
+					try:
+						weekly_line_to_print.append(dictionary[keyword][kpi_name][week])
+					except:
+						weekly_line_to_print.append(0.0)
 
-					weekly_line_to_print.append(dictionary[keyword][kpi_name][week])
 				self.print_kpi_line(weekly_line_to_print, keyword)
 
 
@@ -60,3 +64,5 @@ class Report:
 
 			# print an empty line to separate:
 			self.append_new_row('')
+
+		print 'the report is done on the path' + self.where

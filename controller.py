@@ -67,7 +67,6 @@ class Controller:
 
 	def categories_report(self):
 
-		# for testing
 
 
 		# crawl the csvs
@@ -108,6 +107,13 @@ class Controller:
 		# crawl the csvs
 		self.Crawler.crawl(self.User.get('path'), self.User.get('weeks'),
 			self.User.get('regex'), ['negative values here'], 'regex', 'no-groupname')
+
+
+		# print in report
+		self.Report.restore(self.User.get('path'), self.User.get('filename_of_report'))
+
+		self.Report.print_dictionary(self.User.get('reporttype'), config.variables['kpis'],
+			self.User.get('weeks'), self.Crawler.kpis)
 
 
 a = Controller()

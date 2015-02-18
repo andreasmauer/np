@@ -10,22 +10,35 @@ class Input:
 		self.variables = {
 
 			# 'seosem': 'seo',
-			'reporttype': 'regex',
-			'single_keyword': 'kontaktlinsen',
-			'multiple_keywords': ['kontaktlinsen', 'brillen', 'brille', 'sonnenbrillen'],
-			'category': 'linsen',
-			'country_folder': 'de',
-			'weeks': [41],
-			'path': r'/Users/andres/Documents/python/np/np2.0/de/2014',
-			'filename_of_report': 'testing.csv',
-			'regex': '^brillen$',
+			# 'reporttype': 'regex',
+			# 'single_keyword': 'kontaktlinsen',
+			# 'multiple_keywords': ['kontaktlinsen', 'brillen', 'brille', 'sonnenbrillen'],
+			# 'category': 'linsen',
+			# 'country_folder': 'de',
+			# 'weeks': [41],
+			# 'path': r'/Users/andres/Documents/python/np/np2.0/de/2014',
+			# 'filename_of_report': 'testing.csv',
+			# 'regex': '',
+
+
+
+			# 'seosem': 'seo',
+			'reporttype': '',
+			'single_keyword': '',
+			'multiple_keywords': [],
+			'category': '',
+			'country_folder': '',
+			'weeks': [],
+			'path': '',
+			'filename_of_report': '',
+			'regex': '',
 		}
 
 		###########################################
 		####### FOR TESTING REASONS I JUST BLOCK THE SHOOTER AND USE THE PRE variables
 		###########################################
 		
-		#self.shoot_console_questions()
+		self.shoot_console_questions()
 
 
 	def console_questions(self):
@@ -57,9 +70,8 @@ class Input:
 				break
 			
 			else:
-				print '\n\n'
 				print 'you didnt write a correct report name'
-				
+				print '\n\n'
 		
 
 		#extra questions
@@ -82,9 +94,8 @@ class Input:
 					break
 
 				else:
-					print '\n\n'
 					print 'you didnt separate the keywords with commas'
-					
+					print '\n\n'
 
 		elif self.variables['reporttype'] == 'full category':
 
@@ -100,9 +111,21 @@ class Input:
 					break
 
 				else:
-					print '\n\n'
 					print 'you didnt include a correct category'
-					
+					print '\n\n'
+
+		elif self.variables['reporttype'] == 'regex':
+
+			while True:
+
+				self.variables['regex'] = raw_input('write the regex: ')
+
+				if self.variables['regex'] is not '':
+					break
+
+				else:					
+					print 'include a regex'		
+					print '\n\n'
 
 		###########################################
 		#######-----paths and folders
@@ -121,17 +144,17 @@ class Input:
 			weeks = weeks.split('-')
 			firstweek = int(weeks[0])
 			lastweek = int(weeks[1])
+
+		    
+			i = 0
+			while i <= (lastweek - firstweek):
+				self.variables['weeks'].append(str(firstweek + i))
+				i = i + 1
 			
-			while firstweek <= lastweek:
-				self.variables['weeks'].append(firstweek)
-				firstweek = firstweek + 1
+
 		else:
 			self.variables['weeks'] = weeks.split(',')
 
-		i = 0
-		for week in self.variables['weeks']:
-			self.variables['weeks'][i] = int(week)
-			i = i + 1
 
 		self.variables['filename_of_report'] = raw_input('insert the name of the file where you want the report (example.csv). The file must not exist yet: ')
 		# self.filepathwhere = config.variables['path'] + self.variables['filename_of_report']
@@ -148,6 +171,7 @@ class Input:
 		print "the single keyword is: --"   + str(self.variables['single_keyword'])
 		print "the keywords are:--------"   + ', '.join(self.variables['multiple_keywords'])
 		print "the category is:---------"   + str(self.variables['category'])
+		print "the regex is:------------"   + str(self.variables['regex'])
 		print "the country_folder is: --"   + str(self.variables['country_folder'])
 		print "the weeks are:-----------"   + str(self.variables['weeks']).strip()
 		print "the files are in---------"   + self.variables['path']
