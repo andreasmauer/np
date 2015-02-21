@@ -21,8 +21,6 @@ class Input:
 			# 'regex': '',
 
 
-
-			# 'seosem': 'seo',
 			'reporttype': '',
 			'single_keyword': '',
 			'multiple_keywords': [],
