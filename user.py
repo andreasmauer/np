@@ -87,7 +87,7 @@ class Input:
 
 					i = 0
 					for singlekeyword in self.variables['multiple_keywords']:
-						self.variables['multiple_keywords'][i] == singlekeyword.strip()
+						self.variables['multiple_keywords'][i] = singlekeyword.strip()
 						i = i + 1
 					break
 

@@ -52,28 +52,25 @@ class Crawler:
 
 						
 						elif how == 'consolidated_init' and (any(element in row[1] for element in positives)) and (any(element not in row[1] for element in negatives)):
-							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'just' and (any(element == row[1] for element in positives)):	
-							# print str(week) + ' ' + row[1]
+							
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'consolidated_just' and (any(element == row[1] for element in positives)):
-							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
 
 
 						elif how == 'regex' and (re.search(positives, row[1])):
-							# print str(week) + ' ' + row[1]
 
 							self.magic_crawl(row, week, how, group_name)
 
