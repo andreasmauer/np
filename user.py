@@ -100,12 +100,12 @@ class Input:
 			while True:
 
 				print 'list of keyword categories: '
-				for single_category in config.variables['path']:
+				for single_category in config.variables['keyword_categories']:
 					print single_category
 
 				self.variables['category'] = raw_input('for which category you want to have all the keywords: ')
 
-				if self.variables['category'] in config.variables['path']:
+				if self.variables['category'] in config.variables['keyword_categories']:
 					break
 
 				else:
